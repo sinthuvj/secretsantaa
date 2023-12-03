@@ -127,13 +127,13 @@
 
         <script>
 
-            var queryString = _.chain( location.search.slice( 1 ).split( /&/g ) )
+                var hashString = _.chain(location.hash.slice(1).split(/&/g))
                 .map( function ( item ) { if ( item ) return item.split( /=/ ).map( function ( str ) { return decodeURIComponent( str ); } ); } )
                 .compact().object().value();
 
-            var name = queryString.name;
+                var name = hashString.name;
 
-            var pairing = CryptoJS.AES.decrypt( queryString.pairing, queryString.key ).toString(CryptoJS.enc.Utf8);
+                var pairing = CryptoJS.AES.decrypt(hashString.pairing, hashString.key).toString(CryptoJS.enc.Utf8);
             var pairingDefinition = pairing.match( /^([^(]+)(?: (\([^)]+\)))?$/ );
 
         </script>
@@ -165,13 +165,6 @@
                     </div>
 
                     <div class="title">Good luck!</div>
-
-                    <script>
-                        if (queryString.extra) {
-                            document.write('<iframe class="affiliate" src="http://rcm-eu.amazon-adsystem.com/e/cm?t=secrsant02e-21&o=8&p=48&l=ur1&category=books&banner=10DQAXJ7D1D2VTXMR682&f=ifr" width="728" height="90" scrolling="no" border="0" marginwidth="0" frameborder="0"></iframe>');
-                        }
-                    </script>
-
                 </div>
             </div>
 
